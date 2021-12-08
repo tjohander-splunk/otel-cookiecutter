@@ -1,0 +1,10 @@
+{
+  "project_name": "otelworkshop",
+  "deployment_environment": "apm-workshop",
+  "cluster": "Workshop",
+  "token": "",
+  "realm": "us1",
+  "_copy_without_render": [
+    "overrides/*"
+  ]
+}

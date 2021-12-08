@@ -1,0 +1,17 @@
+clusterName: {{ cookiecutter.cluster }}
+splunkObservability:
+  realm: {{ cookiecutter.realm }}
+  accessToken: {{ cookiecutter.token }}
+
+otelAgent:
+  config:
+    processors:
+      attributes/update:
+        actions:
+          - key: my.key
+            value: redacted
+            action: update
+    service:
+      pipelines:
+        traces:
+          processors: [memory_limiter, k8s_tagger, batch, resource, resourcedetection, attributes/update]

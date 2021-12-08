@@ -1,0 +1,23 @@
+clusterName: {{ cookiecutter.cluster }}
+splunkObservability:
+  realm: {{ cookiecutter.realm }}
+  accessToken: {{ cookiecutter.token }}
+
+otelAgent:
+  config:
+    processors:
+      resource/add_environment:
+        attributes:
+          - action: insert
+            key: deployment.environment
+            value: {{ cookiecutter.deployment_environment }}HERE
+    service:
+      pipelines:
+        traces:
+          processors:
+          - memory_limiter
+          - k8s_tagger
+          - batch
+          - resource
+          - resourcedetection
+          - resource/add_environment

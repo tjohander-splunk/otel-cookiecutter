@@ -1,0 +1,18 @@
+clusterName: {{ cookiecutter.cluster }}
+splunkObservability:
+  realm: {{ cookiecutter.realm }}
+  accessToken: {{ cookiecutter.token }}
+
+otelAgent:
+  config:
+    exporters:
+      logging:
+        loglevel: debug
+        sampling_initial: 5
+        sampling_thereafter: 200
+    service:
+      pipelines:
+        metrics:
+          exporters:
+            - signalfx
+            - logging
